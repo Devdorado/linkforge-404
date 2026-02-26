@@ -59,6 +59,17 @@ final class Linkforge_Activator {
     }
 
     /**
+     * Ensure custom tables exist (safe to call repeatedly).
+     *
+     * Called from Core::init() on every admin request when the stored
+     * DB version doesn't match the current schema version. This handles
+     * ZIP-based updates where the activation hook never fires.
+     */
+    public static function ensure_tables(): void {
+        self::create_tables();
+    }
+
+    /**
      * Create custom tables per PRD §7.1 schema.
      *
      * Uses dbDelta() for safe, idempotent table creation.

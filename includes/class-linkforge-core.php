@@ -15,6 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Linkforge_Core {
 
+    /**
+     * Current schema version for DB migration checks.
+     */
+    private const DB_VERSION = '1.0';
+
     private Linkforge_Interceptor      $interceptor;
     private Linkforge_Logger           $logger;
     private Linkforge_Privacy          $privacy;
@@ -24,6 +29,9 @@ final class Linkforge_Core {
      * Initialize all components and register hooks.
      */
     public function init(): void {
+        // Ensure DB tables exist (handles ZIP updates where activation hook is skipped).
+        $this->maybe_upgrade_db();
+
         // Custom cron schedule (5 minutes).
         add_filter( 'cron_schedules', [ $this, 'add_cron_schedules' ] );
 
@@ -122,6 +130,12 @@ final class Linkforge_Core {
             'callback'            => [ $this, 'rest_get_stats' ],
             'permission_callback' => static fn(): bool => current_user_can( 'manage_options' ),
         ] );
+
+        register_rest_route( 'linkforge/v1', '/settings', [
+            'methods'             => \WP_REST_Server::CREATABLE,
+            'callback'            => [ $this, 'rest_save_setting' ],
+            'permission_callback' => static fn(): bool => current_user_can( 'manage_options' ),
+        ] );
     }
 
     /**
@@ -184,6 +198,13 @@ final class Linkforge_Core {
         global $wpdb;
 
         $table    = $wpdb->prefix . 'linkforge_logs';
+
+        // Guard: if table does not exist, return empty result.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        if ( null === $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ) ) {
+            return new \WP_REST_Response( [ 'items' => [], 'total' => 0, 'page' => 1, 'per_page' => 25 ], 200 );
+        }
+
         $page     = max( 1, (int) $request->get_param( 'page' ) );
         $per_page = min( 100, max( 1, (int) ( $request->get_param( 'per_page' ) ?: 25 ) ) );
         $offset   = ( $page - 1 ) * $per_page;
@@ -257,16 +278,36 @@ final class Linkforge_Core {
         $redirects_table = $wpdb->prefix . 'linkforge_redirects';
         $logs_table      = $wpdb->prefix . 'linkforge_logs';
 
-        // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        // Guard: check tables exist to avoid SQL errors after ZIP-replacements.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $has_redirects = null !== $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $redirects_table ) );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $has_logs = null !== $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $logs_table ) );
+
         $stats = [
-            'total_redirects'    => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$redirects_table}" ),
-            'active_redirects'   => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$redirects_table} WHERE is_active = 1" ),
-            'total_redirect_hits'=> (int) $wpdb->get_var( "SELECT COALESCE(SUM(hit_count), 0) FROM {$redirects_table}" ),
-            'total_404_entries'  => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$logs_table}" ),
-            'unresolved_404s'    => (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$logs_table} WHERE resolved = 0" ),
-            'total_404_hits'     => (int) $wpdb->get_var( "SELECT COALESCE(SUM(hit_count), 0) FROM {$logs_table}" ),
-            'top_404s'           => $wpdb->get_results( "SELECT url, hit_count, last_seen FROM {$logs_table} WHERE resolved = 0 ORDER BY hit_count DESC LIMIT 10" ),
+            'total_redirects'    => 0,
+            'active_redirects'   => 0,
+            'total_redirect_hits'=> 0,
+            'total_404_entries'  => 0,
+            'unresolved_404s'    => 0,
+            'total_404_hits'     => 0,
+            'top_404s'           => [],
+            'tables_ok'          => $has_redirects && $has_logs,
         ];
+
+        // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        if ( $has_redirects ) {
+            $stats['total_redirects']     = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$redirects_table}" );
+            $stats['active_redirects']    = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$redirects_table} WHERE is_active = 1" );
+            $stats['total_redirect_hits'] = (int) $wpdb->get_var( "SELECT COALESCE(SUM(hit_count), 0) FROM {$redirects_table}" );
+        }
+
+        if ( $has_logs ) {
+            $stats['total_404_entries'] = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$logs_table}" );
+            $stats['unresolved_404s']   = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$logs_table} WHERE resolved = 0" );
+            $stats['total_404_hits']    = (int) $wpdb->get_var( "SELECT COALESCE(SUM(hit_count), 0) FROM {$logs_table}" );
+            $stats['top_404s']          = $wpdb->get_results( "SELECT url, hit_count, last_seen FROM {$logs_table} WHERE resolved = 0 ORDER BY hit_count DESC LIMIT 10" );
+        }
         // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
         return new \WP_REST_Response( $stats, 200 );
@@ -293,5 +334,100 @@ final class Linkforge_Core {
         if ( ! empty( $links ) ) {
             Linkforge_Scanner::schedule_check( $post_id, $links );
         }
+    }
+
+    /**
+     * Ensure DB tables are up-to-date.
+     *
+     * Runs dbDelta() when the stored schema version differs from the
+     * current constant. This covers ZIP-based updates where the
+     * activation hook never fires.
+     */
+    private function maybe_upgrade_db(): void {
+        if ( get_option( 'linkforge_db_version' ) === self::DB_VERSION ) {
+            return;
+        }
+
+        Linkforge_Activator::ensure_tables();
+        update_option( 'linkforge_db_version', self::DB_VERSION );
+
+        // Also ensure default options exist.
+        $defaults = [
+            'linkforge_redirect_all_home'  => false,
+            'linkforge_immediate_logging'  => true,
+            'linkforge_auto_update'        => true,
+        ];
+
+        foreach ( $defaults as $key => $value ) {
+            if ( false === get_option( $key ) ) {
+                add_option( $key, $value );
+            }
+        }
+    }
+
+    /**
+     * REST: Save a single settings option (for auto-save).
+     */
+    public function rest_save_setting( \WP_REST_Request $request ): \WP_REST_Response {
+        $option = sanitize_key( (string) $request->get_param( 'option' ) );
+        $value  = $request->get_param( 'value' );
+
+        // Whitelist of allowed options.
+        $allowed = [
+            'linkforge_redirect_all_home',
+            'linkforge_immediate_logging',
+            'linkforge_logging_enabled',
+            'linkforge_log_retention_days',
+            'linkforge_ignore_extensions',
+            'linkforge_rate_limit_per_ip',
+            'linkforge_rate_limit_window',
+            'linkforge_fuzzy_threshold',
+            'linkforge_ip_anonymize',
+            'linkforge_ai_enabled',
+            'linkforge_ai_api_key',
+            'linkforge_ai_confidence',
+            'linkforge_ai_daily_budget',
+            'linkforge_auto_update',
+        ];
+
+        if ( ! in_array( $option, $allowed, true ) ) {
+            return new \WP_REST_Response( [ 'error' => 'Option not allowed' ], 400 );
+        }
+
+        // Sanitize by type.
+        $boolean_options = [
+            'linkforge_redirect_all_home',
+            'linkforge_immediate_logging',
+            'linkforge_logging_enabled',
+            'linkforge_ip_anonymize',
+            'linkforge_ai_enabled',
+            'linkforge_auto_update',
+        ];
+
+        $integer_options = [
+            'linkforge_log_retention_days',
+            'linkforge_rate_limit_per_ip',
+            'linkforge_rate_limit_window',
+            'linkforge_ai_daily_budget',
+        ];
+
+        $float_options = [
+            'linkforge_fuzzy_threshold',
+            'linkforge_ai_confidence',
+        ];
+
+        if ( in_array( $option, $boolean_options, true ) ) {
+            $value = rest_sanitize_boolean( $value );
+        } elseif ( in_array( $option, $integer_options, true ) ) {
+            $value = (int) $value;
+        } elseif ( in_array( $option, $float_options, true ) ) {
+            $value = (float) $value;
+        } else {
+            $value = sanitize_text_field( (string) $value );
+        }
+
+        update_option( $option, $value );
+
+        return new \WP_REST_Response( [ 'saved' => true, 'option' => $option, 'value' => $value ], 200 );
     }
 }

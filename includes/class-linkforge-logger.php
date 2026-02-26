@@ -268,6 +268,16 @@ final class Linkforge_Logger {
 
         $table = $wpdb->prefix . 'linkforge_logs';
 
+        // Safety: bail if the table does not exist yet.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $table_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) );
+        if ( null === $table_exists ) {
+            if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                error_log( '[LinkForge 404] write_to_db: table ' . $table . ' does not exist — skipping write.' ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            }
+            return;
+        }
+
         foreach ( $aggregated as $data ) {
             // Check if a log row for this URL already exists (and is unresolved).
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -279,16 +289,20 @@ final class Linkforge_Logger {
             if ( $existing_id ) {
                 // Aggregate into existing row.
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-                $wpdb->query( $wpdb->prepare(
+                $result = $wpdb->query( $wpdb->prepare(
                     "UPDATE {$table} SET hit_count = hit_count + %d, last_seen = %s WHERE id = %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                     $data['hit_count'],
                     $data['last_seen'],
                     $existing_id
                 ) );
+
+                if ( false === $result && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                    error_log( '[LinkForge 404] write_to_db UPDATE failed: ' . $wpdb->last_error ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+                }
             } else {
                 // Insert new row.
                 // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
-                $wpdb->insert(
+                $result = $wpdb->insert(
                     $table,
                     [
                         'url'        => substr( $data['url'], 0, 2048 ),
@@ -302,6 +316,10 @@ final class Linkforge_Logger {
                     ],
                     [ '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%d' ]
                 );
+
+                if ( false === $result && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                    error_log( '[LinkForge 404] write_to_db INSERT failed: ' . $wpdb->last_error ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+                }
             }
         }
     }
