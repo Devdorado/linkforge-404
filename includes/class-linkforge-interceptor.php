@@ -249,13 +249,15 @@ final class Linkforge_Interceptor {
     /**
      * Stage 3: Fuzzy match — Jaro-Winkler similarity against published post slugs.
      *
-     * Phase 2 implementation. Returns null until Linkforge_Matcher_Fuzzy is built.
+     * Phase 2: Compares the 404 path against all published slugs using the
+     * Jaro-Winkler distance algorithm and redirects to the best match when
+     * the similarity score exceeds the configurable threshold.
      *
      * @return object{url_to: string, status_code: int}|null
      */
     private function match_fuzzy( string $url ): ?object {
         if ( ! class_exists( __NAMESPACE__ . '\\Linkforge_Matcher_Fuzzy' ) ) {
-            return null; // Phase 2 — not yet available.
+            return null; // Graceful degradation if class file is missing.
         }
 
         $threshold = (float) get_option( 'linkforge_fuzzy_threshold', 0.85 );

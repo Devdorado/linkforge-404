@@ -53,8 +53,15 @@ final class Linkforge_Core {
         add_filter( 'wp_privacy_personal_data_exporters', [ $this->privacy, 'register_exporter' ] );
         add_filter( 'wp_privacy_personal_data_erasers', [ $this->privacy, 'register_eraser' ] );
 
-        // Broken link detection on post save (Phase 2 stub).
+        // Phase 2: Broken link scanner cron callback.
+        Linkforge_Scanner::register_cron();
+
+        // Phase 2: Broken link detection on post save.
         add_action( 'save_post', [ $this, 'on_save_post' ], 20, 2 );
+
+        // Phase 2: Invalidate fuzzy-match slug cache when content changes.
+        add_action( 'save_post', [ Linkforge_Matcher_Fuzzy::class, 'invalidate_cache' ], 25 );
+        add_action( 'delete_post', [ Linkforge_Matcher_Fuzzy::class, 'invalidate_cache' ], 25 );
     }
 
     /**
@@ -276,11 +283,11 @@ final class Linkforge_Core {
             return;
         }
 
-        /**
-         * Phase 2: Extract links from post_content and queue for async checking.
-         *
-         * @see Linkforge_Scanner::extract_links()
-         * @see Linkforge_Scanner::schedule_check()
-         */
+        // Phase 2: Extract links and queue for async broken-link checking.
+        $links = Linkforge_Scanner::extract_links( $post->post_content );
+
+        if ( ! empty( $links ) ) {
+            Linkforge_Scanner::schedule_check( $post_id, $links );
+        }
     }
 }
