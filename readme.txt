@@ -5,15 +5,19 @@ Tags: 404, redirect, seo, broken links, url management
 Requires at least: 6.4
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.0-beta
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Enterprise-grade 404 management with async logging, multi-stage rerouting, and GDPR-compliant privacy-by-design.
 
+**⚠️ Beta:** This plugin is currently in active beta testing and being continuously improved. Feedback and bug reports are welcome at support@devdorado.com.
+
 == Description ==
 
 **LinkForge 404** turns your WordPress 404 errors into seamless redirects. It intercepts every 404 request and runs it through a multi-stage rerouting cascade before logging it — keeping visitors on your site and protecting your SEO rankings.
+
+> **🚧 Beta Notice:** LinkForge 404 is currently in active beta. We are intensively testing and improving the plugin. If you encounter any issues, please reach out to [support@devdorado.com](mailto:support@devdorado.com) or open an issue on [GitHub](https://github.com/Devdorado/linkforge-404).
 
 = Key Features =
 

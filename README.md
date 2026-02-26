@@ -11,13 +11,16 @@
 
 <p align="center">
   <a href="https://devdorado.com"><img src="https://img.shields.io/badge/Devdorado-devdorado.com-blue?style=flat-square" alt="Devdorado" /></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-green?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/version-1.0.0--beta-orange?style=flat-square" alt="Version" />
+  <img src="https://img.shields.io/badge/status-beta-yellow?style=flat-square" alt="Beta" />
   <img src="https://img.shields.io/badge/PHP-8.1%2B-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8.1+" />
   <img src="https://img.shields.io/badge/WordPress-6.4%2B-21759B?style=flat-square&logo=wordpress&logoColor=white" alt="WordPress 6.4+" />
   <img src="https://img.shields.io/badge/license-GPL--2.0--or--later-blue?style=flat-square" alt="License" />
 </p>
 
 ---
+
+> **🚧 Beta Notice:** LinkForge 404 is currently in active beta. The plugin is being intensively tested and continuously improved. Feedback, bug reports and feature requests are very welcome — reach out at [support@devdorado.com](mailto:support@devdorado.com) or open an [issue on GitHub](https://github.com/Devdorado/linkforge-404/issues).
 
 **LinkForge 404** turns your WordPress 404 errors into seamless redirects. It intercepts every 404 request and runs it through a multi-stage rerouting cascade before logging it — keeping visitors on your site and protecting your SEO rankings.
 
@@ -126,7 +129,7 @@ LinkForge 404 follows **Privacy-by-Design** principles:
 ## Roadmap
 
 - [x] **Phase 1** — Exact & Regex matching, async logging, admin dashboard, WP-CLI
-- [ ] **Phase 2** — Fuzzy matching (Jaro-Winkler), broken link scanner on post save
+- [x] **Phase 2** — Fuzzy matching (Jaro-Winkler), broken link scanner on post save
 - [ ] **Phase 3** — AI-powered semantic matching (OpenAI embeddings), multisite support
 
 ## Contributing

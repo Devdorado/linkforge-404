@@ -17,7 +17,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     <h1>
         <span class="dashicons dashicons-randomize"></span>
         <?php esc_html_e( 'LinkForge 404 — Dashboard', 'linkforge-404' ); ?>
+        <span class="linkforge-badge linkforge-badge-warning" style="font-size: 12px; vertical-align: middle; margin-left: 8px;">BETA</span>
     </h1>
+
+    <!-- Beta Notice -->
+    <div class="notice notice-info linkforge-beta-notice" style="margin: 0 0 20px 0; padding: 12px 16px; border-left-color: #dba617;">
+        <p>
+            <strong>🚧 <?php esc_html_e( 'Beta-Version', 'linkforge-404' ); ?></strong> —
+            <?php esc_html_e( 'Dieses Plugin wird aktuell intensiv getestet und laufend verbessert. Feedback und Bug-Reports sind willkommen:', 'linkforge-404' ); ?>
+            <a href="mailto:support@devdorado.com">support@devdorado.com</a>
+        </p>
+    </div>
 
     <!-- Stats Cards -->
     <div class="linkforge-stats" id="linkforge-stats">
