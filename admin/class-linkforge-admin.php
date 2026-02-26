@@ -140,6 +140,7 @@ final class Linkforge_Admin {
             'linkforge_ai_api_key'           => [ 'type' => 'string',  'default' => '' ],
             'linkforge_ai_confidence'        => [ 'type' => 'number',  'default' => 0.85 ],
             'linkforge_ai_daily_budget'      => [ 'type' => 'integer', 'default' => 100 ],
+            'linkforge_auto_update'          => [ 'type' => 'boolean', 'default' => true ],
         ];
 
         foreach ( $settings as $name => $args ) {

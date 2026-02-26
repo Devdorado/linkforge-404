@@ -44,6 +44,10 @@ final class Linkforge_Core {
         if ( is_admin() ) {
             $admin = new Linkforge_Admin();
             $admin->init();
+
+            // Self-updater via GitHub Releases (enabled by default).
+            $updater = new Linkforge_Updater();
+            $updater->init();
         }
 
         // REST API endpoints.

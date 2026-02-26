@@ -186,6 +186,69 @@ if ( ! defined( 'ABSPATH' ) ) {
         <?php submit_button(); ?>
     </form>
 
+    <!-- Updates Section -->
+    <div class="linkforge-section">
+        <h2>
+            <span class="dashicons dashicons-update" style="margin-right: 4px;"></span>
+            <?php esc_html_e( 'Automatic Updates', 'linkforge-404' ); ?>
+        </h2>
+        <form method="post" action="options.php">
+            <?php settings_fields( 'linkforge_settings' ); ?>
+            <table class="form-table">
+                <tr>
+                    <th scope="row">
+                        <label for="linkforge_auto_update"><?php esc_html_e( 'Auto-Update', 'linkforge-404' ); ?></label>
+                    </th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="linkforge_auto_update" id="linkforge_auto_update" value="1"
+                                <?php checked( get_option( 'linkforge_auto_update', true ) ); ?> />
+                            <?php esc_html_e( 'Automatically check for new versions via GitHub Releases', 'linkforge-404' ); ?>
+                        </label>
+                        <p class="description">
+                            <?php esc_html_e( 'When enabled, LinkForge 404 checks for updates every 12 hours. New versions appear as regular WordPress plugin updates. Disable this if you prefer to update manually.', 'linkforge-404' ); ?>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Installed Version', 'linkforge-404' ); ?></th>
+                    <td>
+                        <code><?php echo esc_html( LINKFORGE_VERSION ); ?></code>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Update Source', 'linkforge-404' ); ?></th>
+                    <td>
+                        <a href="https://github.com/Devdorado/linkforge-404/releases" target="_blank" rel="noopener noreferrer">
+                            GitHub Releases &rarr;
+                        </a>
+                    </td>
+                </tr>
+                <?php
+                $remote_cache = get_transient( 'linkforge_update_check' );
+                if ( is_array( $remote_cache ) && ! empty( $remote_cache['version'] ) ) :
+                ?>
+                <tr>
+                    <th scope="row"><?php esc_html_e( 'Latest Available', 'linkforge-404' ); ?></th>
+                    <td>
+                        <code><?php echo esc_html( $remote_cache['version'] ); ?></code>
+                        <?php if ( version_compare( $remote_cache['version'], LINKFORGE_VERSION, '>' ) ) : ?>
+                            <span class="linkforge-badge linkforge-badge-success" style="margin-left: 8px;">
+                                <?php esc_html_e( 'Update available!', 'linkforge-404' ); ?>
+                            </span>
+                        <?php else : ?>
+                            <span class="linkforge-badge linkforge-badge-info" style="margin-left: 8px;">
+                                <?php esc_html_e( 'Up to date', 'linkforge-404' ); ?>
+                            </span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+            </table>
+            <?php submit_button( __( 'Save Update Settings', 'linkforge-404' ) ); ?>
+        </form>
+    </div>
+
     <!-- Support Section -->
     <div class="linkforge-section">
         <h2><?php esc_html_e( 'Support', 'linkforge-404' ); ?></h2>
