@@ -1,0 +1,304 @@
+/**
+ * LinkForge 404 — Admin Styles
+ *
+ * @package LinkForge404
+ */
+
+/* ── Layout ────────────────────────────────────────────── */
+
+.linkforge-wrap {
+    max-width: 1200px;
+}
+
+.linkforge-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.linkforge-wrap h1 .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+}
+
+.linkforge-section {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.linkforge-section h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+/* ── Stats Cards ───────────────────────────────────────── */
+
+.linkforge-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.linkforge-stat-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: center;
+    border-left: 4px solid #2271b1;
+}
+
+.linkforge-stat-card.linkforge-stat-warning {
+    border-left-color: #dba617;
+}
+
+.linkforge-stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #1d2327;
+}
+
+.linkforge-stat-label {
+    font-size: 13px;
+    color: #646970;
+    margin-top: 4px;
+}
+
+/* ── Tables ────────────────────────────────────────────── */
+
+.linkforge-loading {
+    text-align: center;
+    padding: 40px !important;
+    color: #646970;
+    font-style: italic;
+}
+
+.column-cb {
+    width: 30px;
+}
+
+.column-hits,
+.column-status,
+.column-active,
+.column-type {
+    width: 80px;
+    text-align: center;
+}
+
+.column-url,
+.column-url-from,
+.column-url-to {
+    max-width: 300px;
+    word-break: break-all;
+}
+
+.column-referrer {
+    max-width: 200px;
+    word-break: break-all;
+}
+
+.column-last-seen {
+    width: 130px;
+}
+
+.column-actions {
+    width: 120px;
+}
+
+/* ── Badges ────────────────────────────────────────────── */
+
+.linkforge-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.linkforge-badge-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.linkforge-badge-warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.linkforge-badge-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.linkforge-badge-info {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.linkforge-badge-muted {
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+/* ── Bulk Action Bar ───────────────────────────────────── */
+
+.linkforge-bulk-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+/* ── Forms ──────────────────────────────────────────────── */
+
+.linkforge-inline-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.linkforge-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.linkforge-form-row label {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* ── Pagination ────────────────────────────────────────── */
+
+.linkforge-pagination {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 12px 0;
+}
+
+.linkforge-pagination .button.current {
+    background: #2271b1;
+    color: #fff;
+    border-color: #2271b1;
+}
+
+/* ── Modal ──────────────────────────────────────────────── */
+
+.linkforge-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkforge-modal-content {
+    background: #fff;
+    padding: 24px;
+    border-radius: 6px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.linkforge-modal-content h3 {
+    margin-top: 0;
+}
+
+.linkforge-modal-content textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+/* ── Row Actions ───────────────────────────────────────── */
+
+.linkforge-row-action {
+    cursor: pointer;
+    color: #2271b1;
+    text-decoration: none;
+    margin-right: 8px;
+    font-size: 13px;
+}
+
+.linkforge-row-action:hover {
+    color: #135e96;
+    text-decoration: underline;
+}
+
+.linkforge-row-action.linkforge-delete {
+    color: #b32d2e;
+}
+
+.linkforge-row-action.linkforge-delete:hover {
+    color: #a00;
+}
+
+/* ── Active Toggle ─────────────────────────────────────── */
+
+.linkforge-toggle {
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.linkforge-toggle.active {
+    background: #00a32a;
+}
+
+.linkforge-toggle::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s;
+}
+
+.linkforge-toggle.active::after {
+    transform: translateX(16px);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 782px) {
+    .linkforge-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .linkforge-inline-form {
+        flex-direction: column;
+    }
+
+    .linkforge-export-bar {
+        float: none !important;
+        margin-top: 8px;
+    }
+}
