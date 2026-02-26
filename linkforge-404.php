@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       LinkForge 404
- * Plugin URI:        https://sofortwebseite.ch/linkforge-404
+ * Plugin URI:        https://devdorado.com/linkforge-404
  * Description:       Enterprise-taugliches WordPress-Plugin für intelligentes 404-Management und proaktive Fehlerlink-Erkennung. Asynchrones Logging, mehrstufige Rerouting-Algorithmen (Exact, Regex, Fuzzy, KI) und DSGVO-konformes Privacy-by-Design.
  * Version:           1.0.0
  * Requires at least: 6.4
