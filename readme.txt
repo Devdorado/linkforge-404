@@ -1,5 +1,6 @@
 === LinkForge 404 ===
 Contributors: devdorado
+Donate link: https://devdorado.com
 Tags: 404, redirect, seo, broken links, url management
 Requires at least: 6.4
 Tested up to: 6.7
@@ -63,6 +64,12 @@ LinkForge 404 hooks into WordPress at priority 999 on `template_redirect`, so it
 = Does it support multisite? =
 
 Each site in a multisite network gets its own tables and settings. Network-wide management is planned for a future release.
+
+== Support ==
+
+* **Email:** support@devdorado.com
+* **GitHub:** [Devdorado/linkforge-404](https://github.com/Devdorado/linkforge-404)
+* **Website:** [devdorado.com/linkforge-404](https://devdorado.com/linkforge-404)
 
 == Changelog ==
 

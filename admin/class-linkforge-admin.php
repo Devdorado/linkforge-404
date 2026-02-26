@@ -169,6 +169,12 @@ final class Linkforge_Admin {
             __( 'Settings', 'linkforge-404' )
         );
 
+        $support_link = sprintf(
+            '<a href="mailto:support@devdorado.com">%s</a>',
+            __( 'Support', 'linkforge-404' )
+        );
+
+        array_unshift( $links, $support_link );
         array_unshift( $links, $settings_link );
 
         return $links;

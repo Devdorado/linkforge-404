@@ -6,12 +6,13 @@
  * Version:           1.0.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
- * Author:            Marc | DEVDORADO / Sofortwebseite.ch
+ * Author:            Devdorado
  * Author URI:        https://devdorado.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       linkforge-404
  * Domain Path:       /languages
+ * Support:           support@devdorado.com
  *
  * @package LinkForge404
  */

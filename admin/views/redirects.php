@@ -117,4 +117,15 @@ if ( ! defined( 'ABSPATH' ) ) {
             </p>
         </div>
     </div>
+
+    <!-- Devdorado Branding Footer -->
+    <div class="linkforge-branding-footer">
+        <p>
+            <strong>LinkForge 404</strong> <?php esc_html_e( 'by', 'linkforge-404' ); ?>
+            <a href="https://devdorado.com" target="_blank" rel="noopener noreferrer">Devdorado</a>
+            &mdash;
+            <?php esc_html_e( 'Need help?', 'linkforge-404' ); ?>
+            <a href="mailto:support@devdorado.com">support@devdorado.com</a>
+        </p>
+    </div>
 </div>

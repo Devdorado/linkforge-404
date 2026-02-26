@@ -185,4 +185,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         <?php submit_button(); ?>
     </form>
+
+    <!-- Support Section -->
+    <div class="linkforge-section">
+        <h2><?php esc_html_e( 'Support', 'linkforge-404' ); ?></h2>
+        <table class="form-table">
+            <tr>
+                <th scope="row"><?php esc_html_e( 'Documentation', 'linkforge-404' ); ?></th>
+                <td>
+                    <a href="https://devdorado.com/linkforge-404" target="_blank" rel="noopener noreferrer">
+                        devdorado.com/linkforge-404
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><?php esc_html_e( 'Email Support', 'linkforge-404' ); ?></th>
+                <td>
+                    <a href="mailto:support@devdorado.com">support@devdorado.com</a>
+                    <p class="description">
+                        <?php esc_html_e( 'Send us your question or bug report and we will get back to you within 24 hours.', 'linkforge-404' ); ?>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><?php esc_html_e( 'GitHub', 'linkforge-404' ); ?></th>
+                <td>
+                    <a href="https://github.com/Devdorado/linkforge-404" target="_blank" rel="noopener noreferrer">
+                        Devdorado/linkforge-404
+                    </a>
+                    <p class="description">
+                        <?php esc_html_e( 'Report issues, request features, or contribute to the project.', 'linkforge-404' ); ?>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Devdorado Branding Footer -->
+    <div class="linkforge-branding-footer">
+        <p>
+            <strong>LinkForge 404</strong> <?php esc_html_e( 'by', 'linkforge-404' ); ?>
+            <a href="https://devdorado.com" target="_blank" rel="noopener noreferrer">Devdorado</a>
+            &mdash;
+            <?php esc_html_e( 'Need help?', 'linkforge-404' ); ?>
+            <a href="mailto:support@devdorado.com">support@devdorado.com</a>
+        </p>
+    </div>
 </div>
