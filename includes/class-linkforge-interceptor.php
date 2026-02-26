@@ -81,6 +81,14 @@ final class Linkforge_Interceptor {
             exit;
         }
 
+        // ── Option: Redirect ALL 404s to homepage ──────────────────
+        if ( (bool) get_option( 'linkforge_redirect_all_home', false ) ) {
+            // Still log the 404 before redirecting.
+            $this->logger->log_404( $requested_url );
+            wp_safe_redirect( home_url( '/' ), 301 );
+            exit;
+        }
+
         // ── Cascade Stage 1: Exact Match (FR-401) ──────────────────
         $match = $this->match_exact( $requested_url );
         if ( $match ) {

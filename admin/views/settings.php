@@ -22,6 +22,31 @@ if ( ! defined( 'ABSPATH' ) ) {
     <form method="post" action="options.php">
         <?php settings_fields( 'linkforge_settings' ); ?>
 
+        <!-- 404 Behavior Section -->
+        <div class="linkforge-section">
+            <h2>
+                <span class="dashicons dashicons-migrate" style="margin-right: 4px;"></span>
+                <?php esc_html_e( '404 Behavior', 'linkforge-404' ); ?>
+            </h2>
+            <table class="form-table">
+                <tr>
+                    <th scope="row">
+                        <label for="linkforge_redirect_all_home"><?php esc_html_e( 'Redirect All 404s to Homepage', 'linkforge-404' ); ?></label>
+                    </th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="linkforge_redirect_all_home" id="linkforge_redirect_all_home" value="1"
+                                <?php checked( get_option( 'linkforge_redirect_all_home', false ) ); ?> />
+                            <?php esc_html_e( 'Automatically redirect all 404 errors to the homepage (301)', 'linkforge-404' ); ?>
+                        </label>
+                        <p class="description">
+                            <?php esc_html_e( 'When enabled, every 404 request is immediately redirected to your homepage. The 404 is still logged. This overrides the matching cascade (Exact, Regex, Fuzzy, AI).', 'linkforge-404' ); ?>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <!-- Logging Section -->
         <div class="linkforge-section">
             <h2><?php esc_html_e( 'Logging', 'linkforge-404' ); ?></h2>
@@ -36,6 +61,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <?php checked( get_option( 'linkforge_logging_enabled', true ) ); ?> />
                             <?php esc_html_e( 'Enable 404 logging', 'linkforge-404' ); ?>
                         </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="linkforge_immediate_logging"><?php esc_html_e( 'Immediate Logging', 'linkforge-404' ); ?></label>
+                    </th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="linkforge_immediate_logging" id="linkforge_immediate_logging" value="1"
+                                <?php checked( get_option( 'linkforge_immediate_logging', true ) ); ?> />
+                            <?php esc_html_e( 'Write 404 logs directly to the database (no buffer delay)', 'linkforge-404' ); ?>
+                        </label>
+                        <p class="description"><?php esc_html_e( 'Recommended for most sites. Logs appear instantly in the dashboard. Disable only on very high-traffic sites that use Redis/Memcached buffering.', 'linkforge-404' ); ?></p>
                     </td>
                 </tr>
                 <tr>

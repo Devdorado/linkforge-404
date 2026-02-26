@@ -44,6 +44,9 @@ final class Linkforge_Logger {
      * FR-202: Flat-file fallback when no persistent object cache.
      * FR-204: Static asset filtering happens upstream in Interceptor.
      *
+     * If immediate logging is enabled (default on sites without persistent
+     * cache), writes directly to the DB so entries appear instantly.
+     *
      * @param string $url The 404 URL path.
      */
     public function log_404( string $url ): void {
@@ -61,6 +64,13 @@ final class Linkforge_Logger {
                 'ip_hash'    => $this->privacy->anonymize_ip( $this->get_client_ip() ),
                 'timestamp'  => current_time( 'mysql', true ),
             ];
+
+            // Immediate mode: write directly to DB (no buffer delay).
+            // Enabled by default so logs appear instantly in the dashboard.
+            if ( (bool) get_option( 'linkforge_immediate_logging', true ) ) {
+                $this->write_to_db( $this->aggregate_entries( [ $entry ] ) );
+                return;
+            }
 
             if ( $this->has_persistent_cache() ) {
                 $this->buffer_to_cache( $entry );
