@@ -97,10 +97,17 @@ final class Linkforge_Updater {
     /**
      * Filter: Inject our update data into the WP update transient.
      *
-     * @param object $transient The update_plugins transient value.
-     * @return object
+     * WordPress may pass `false` when the transient does not exist yet
+     * (e.g. during a fresh plugin installation), so we accept mixed input.
+     *
+     * @param mixed $transient The update_plugins transient value (object|false).
+     * @return mixed
      */
-    public function check_for_update( object $transient ): object {
+    public function check_for_update( mixed $transient ): mixed {
+        if ( ! is_object( $transient ) ) {
+            return $transient;
+        }
+
         if ( empty( $transient->checked ) ) {
             return $transient;
         }
