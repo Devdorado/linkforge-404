@@ -1,0 +1,544 @@
+# German translation for LinkForge 404.
+# Copyright (C) 2026 Devdorado
+# This file is distributed under the GPL-2.0-or-later.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: LinkForge 404 1.0.0-beta\n"
+"Report-Msgid-Bugs-To: support@devdorado.com\n"
+"POT-Creation-Date: 2026-02-26 00:00+0000\n"
+"PO-Revision-Date: 2026-02-26 00:00+0000\n"
+"Last-Translator: Devdorado <support@devdorado.com>\n"
+"Language-Team: German <support@devdorado.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: LinkForge 404 POT Generator\n"
+"X-Domain: linkforge-404\n"
+
+#. Plugin Name of the plugin
+msgid "LinkForge 404"
+msgstr "LinkForge 404"
+
+#: admin/class-linkforge-admin.php
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: admin/class-linkforge-admin.php
+msgid "Redirects"
+msgstr "Weiterleitungen"
+
+#: admin/class-linkforge-admin.php
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: admin/class-linkforge-admin.php
+msgid "Are you sure you want to delete the selected items?"
+msgstr "Möchtest du die ausgewählten Einträge wirklich löschen?"
+
+#: admin/class-linkforge-admin.php
+msgid "Create redirect rules for the selected 404 entries?"
+msgstr "Weiterleitungsregeln für die ausgewählten 404-Einträge erstellen?"
+
+#: admin/class-linkforge-admin.php
+msgid "Saved successfully."
+msgstr "Erfolgreich gespeichert."
+
+#: admin/class-linkforge-admin.php
+msgid "An error occurred. Please try again."
+msgstr "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+
+#: admin/class-linkforge-admin.php
+msgid "No 404 errors recorded yet."
+msgstr "Noch keine 404-Fehler erfasst."
+
+#: admin/class-linkforge-admin.php
+msgid "No redirects configured yet."
+msgstr "Noch keine Weiterleitungen konfiguriert."
+
+#: admin/class-linkforge-admin.php
+msgid "Quick 301 →"
+msgstr "301 →"
+
+#: admin/class-linkforge-admin.php
+msgid "Delete"
+msgstr "Löschen"
+
+#: admin/class-linkforge-admin.php
+msgid "Create 301 redirect for \"%s\" → Homepage?"
+msgstr "301-Weiterleitung für \"%s\" → Startseite erstellen?"
+
+#: admin/class-linkforge-admin.php
+msgid "Nginx Rewrite Rules"
+msgstr "Nginx-Rewrite-Regeln"
+
+#: admin/class-linkforge-admin.php
+msgid ".htaccess Rewrite Rules"
+msgstr ".htaccess-Rewrite-Regeln"
+
+#: admin/class-linkforge-admin.php
+msgid "Copied!"
+msgstr "Kopiert!"
+
+#: admin/class-linkforge-admin.php
+msgid "Copy to Clipboard"
+msgstr "In Zwischenablage kopieren"
+
+#: admin/class-linkforge-admin.php
+msgid "✓ Saved"
+msgstr "✓ Gespeichert"
+
+#: admin/class-linkforge-admin.php
+msgid "Database tables are being created. Please deactivate and reactivate the plugin, or visit a 404 page to trigger table creation, then reload this page."
+msgstr "Datenbanktabellen werden erstellt. Bitte deaktiviere und reaktiviere das Plugin oder rufe eine 404-Seite auf, um die Tabellenerstellung auszulösen, und lade dann diese Seite neu."
+
+#: admin/class-linkforge-admin.php
+msgid "Support"
+msgstr "Support"
+
+#: admin/class-linkforge-admin.php
+msgid "You do not have permission to access this page."
+msgstr "Du hast keine Berechtigung, auf diese Seite zuzugreifen."
+
+#: includes/class-linkforge-core.php
+msgid "Every Five Minutes (LinkForge)"
+msgstr "Alle fünf Minuten (LinkForge)"
+
+#: includes/class-linkforge-activator.php
+msgid "LinkForge 404 requires PHP 8.1 or higher."
+msgstr "LinkForge 404 erfordert PHP 8.1 oder höher."
+
+#: includes/class-linkforge-activator.php
+msgid "LinkForge 404 requires WordPress 6.4 or higher."
+msgstr "LinkForge 404 erfordert WordPress 6.4 oder höher."
+
+#: includes/class-linkforge-privacy.php
+msgid "LinkForge 404 Log Data"
+msgstr "LinkForge 404 Protokolldaten"
+
+#: includes/class-linkforge-privacy.php
+msgid "LinkForge 404 does not store personally identifiable data. All IP addresses are anonymized and hashed before storage."
+msgstr "LinkForge 404 speichert keine personenbezogenen Daten. Alle IP-Adressen werden vor der Speicherung anonymisiert und gehasht."
+
+#: admin/views/dashboard.php
+msgid "LinkForge 404 — Dashboard"
+msgstr "LinkForge 404 — Dashboard"
+
+#: admin/views/dashboard.php
+msgid "Beta Version"
+msgstr "Beta-Version"
+
+#: admin/views/dashboard.php
+msgid "This plugin is currently being intensively tested and continuously improved. Feedback and bug reports are welcome:"
+msgstr "Dieses Plugin wird aktuell intensiv getestet und laufend verbessert. Feedback und Bug-Reports sind willkommen:"
+
+#: admin/views/dashboard.php
+msgid "Active Redirects"
+msgstr "Aktive Weiterleitungen"
+
+#: admin/views/dashboard.php
+msgid "Total Redirect Hits"
+msgstr "Weiterleitungs-Treffer gesamt"
+
+#: admin/views/dashboard.php
+msgid "Unresolved 404s"
+msgstr "Ungelöste 404-Fehler"
+
+#: admin/views/dashboard.php
+msgid "Total 404 Hits"
+msgstr "404-Treffer gesamt"
+
+#: admin/views/dashboard.php
+msgid "Top Unresolved 404 Errors"
+msgstr "Häufigste ungelöste 404-Fehler"
+
+#: admin/views/dashboard.php
+msgid "Bulk Actions"
+msgstr "Massenaktionen"
+
+#: admin/views/dashboard.php
+msgid "Create 301 Redirect → Homepage"
+msgstr "301-Weiterleitung → Startseite erstellen"
+
+#: admin/views/dashboard.php
+msgid "Mark as 410 Gone"
+msgstr "Als 410 Gone markieren"
+
+#: admin/views/dashboard.php
+msgid "Create 301 Redirect → Custom URL"
+msgstr "301-Weiterleitung → Benutzerdefinierte URL erstellen"
+
+#: admin/views/dashboard.php
+msgid "Target URL (for custom redirect)"
+msgstr "Ziel-URL (für benutzerdefinierte Weiterleitung)"
+
+#: admin/views/dashboard.php
+msgid "Apply"
+msgstr "Anwenden"
+
+#: admin/views/dashboard.php admin/views/redirects.php
+msgid "URL"
+msgstr "URL"
+
+#: admin/views/dashboard.php admin/views/redirects.php
+msgid "Hits"
+msgstr "Treffer"
+
+#: admin/views/dashboard.php
+msgid "Referrer"
+msgstr "Referrer"
+
+#: admin/views/dashboard.php admin/views/redirects.php
+msgid "Last Seen"
+msgstr "Zuletzt gesehen"
+
+#: admin/views/dashboard.php admin/views/redirects.php
+msgid "Actions"
+msgstr "Aktionen"
+
+#: admin/views/dashboard.php
+msgid "Loading…"
+msgstr "Lädt…"
+
+#: admin/views/dashboard.php
+msgid "System Status"
+msgstr "Systemstatus"
+
+#: admin/views/dashboard.php
+msgid "Object Cache"
+msgstr "Objekt-Cache"
+
+#: admin/views/dashboard.php
+msgid "Active (Redis/Memcached)"
+msgstr "Aktiv (Redis/Memcached)"
+
+#: admin/views/dashboard.php
+msgid "Not Available — Using File Fallback"
+msgstr "Nicht verfügbar — Datei-Fallback wird verwendet"
+
+#: admin/views/dashboard.php
+msgid "Log Buffer"
+msgstr "Log-Puffer"
+
+#: admin/views/dashboard.php
+#, php-format
+msgid "Next flush in %s"
+msgstr "Nächste Leerung in %s"
+
+#: admin/views/dashboard.php
+msgid "Not scheduled"
+msgstr "Nicht geplant"
+
+#: admin/views/dashboard.php admin/views/settings.php
+msgid "IP Anonymization"
+msgstr "IP-Anonymisierung"
+
+#: admin/views/dashboard.php
+msgid "Enabled (GDPR-compliant)"
+msgstr "Aktiviert (DSGVO-konform)"
+
+#: admin/views/dashboard.php
+msgid "Disabled — Not recommended!"
+msgstr "Deaktiviert — Nicht empfohlen!"
+
+#: admin/views/dashboard.php
+msgid "Plugin Version"
+msgstr "Plugin-Version"
+
+#: admin/views/dashboard.php admin/views/settings.php admin/views/redirects.php
+msgid "by"
+msgstr "von"
+
+#: admin/views/dashboard.php admin/views/settings.php admin/views/redirects.php
+msgid "Need help?"
+msgstr "Hilfe benötigt?"
+
+#: admin/views/settings.php
+msgid "LinkForge 404 — Settings"
+msgstr "LinkForge 404 — Einstellungen"
+
+#: admin/views/settings.php
+msgid "404 Behavior"
+msgstr "404-Verhalten"
+
+#: admin/views/settings.php
+msgid "Redirect All 404s to Homepage"
+msgstr "Alle 404-Fehler auf die Startseite weiterleiten"
+
+#: admin/views/settings.php
+msgid "Automatically redirect all 404 errors to the homepage (301)"
+msgstr "Alle 404-Fehler automatisch auf die Startseite weiterleiten (301)"
+
+#: admin/views/settings.php
+msgid "When enabled, every 404 request is immediately redirected to your homepage. The 404 is still logged. This overrides the matching cascade (Exact, Regex, Fuzzy, AI)."
+msgstr "Wenn aktiviert, wird jede 404-Anfrage sofort auf die Startseite umgeleitet. Der 404-Fehler wird trotzdem protokolliert. Dies überschreibt die Matching-Kaskade (Exakt, Regex, Fuzzy, KI)."
+
+#: admin/views/settings.php
+msgid "Logging"
+msgstr "Protokollierung"
+
+#: admin/views/settings.php
+msgid "404 Logging"
+msgstr "404-Protokollierung"
+
+#: admin/views/settings.php
+msgid "Enable 404 logging"
+msgstr "404-Protokollierung aktivieren"
+
+#: admin/views/settings.php
+msgid "Immediate Logging"
+msgstr "Sofortige Protokollierung"
+
+#: admin/views/settings.php
+msgid "Write 404 logs directly to the database (no buffer delay)"
+msgstr "404-Protokolle direkt in die Datenbank schreiben (ohne Puffer-Verzögerung)"
+
+#: admin/views/settings.php
+msgid "Recommended for most sites. Logs appear instantly in the dashboard. Disable only on very high-traffic sites that use Redis/Memcached buffering."
+msgstr "Empfohlen für die meisten Websites. Protokolle erscheinen sofort im Dashboard. Nur auf sehr stark frequentierten Websites deaktivieren, die Redis/Memcached-Pufferung verwenden."
+
+#: admin/views/settings.php
+msgid "Log Retention (Days)"
+msgstr "Protokoll-Aufbewahrung (Tage)"
+
+#: admin/views/settings.php
+msgid "Log entries older than this will be automatically deleted. Set to 0 to keep indefinitely."
+msgstr "Protokolleinträge, die älter als dieser Wert sind, werden automatisch gelöscht. Auf 0 setzen, um unbegrenzt aufzubewahren."
+
+#: admin/views/settings.php
+msgid "Ignored File Extensions"
+msgstr "Ignorierte Dateiendungen"
+
+#: admin/views/settings.php
+msgid "Comma-separated list of file extensions to ignore (no logging for static assets)."
+msgstr "Kommagetrennte Liste von Dateiendungen, die ignoriert werden sollen (keine Protokollierung für statische Assets)."
+
+#: admin/views/settings.php
+msgid "Rate Limiting"
+msgstr "Ratenbegrenzung"
+
+#: admin/views/settings.php
+msgid "Max 404 Requests per IP"
+msgstr "Max. 404-Anfragen pro IP"
+
+#: admin/views/settings.php
+msgid "Set to 0 to disable rate limiting. Recommended: 60."
+msgstr "Auf 0 setzen, um die Ratenbegrenzung zu deaktivieren. Empfohlen: 60."
+
+#: admin/views/settings.php
+msgid "Rate Limit Window (Seconds)"
+msgstr "Ratenbegrenzungs-Zeitfenster (Sekunden)"
+
+#: admin/views/settings.php
+msgid "Matching Algorithms"
+msgstr "Matching-Algorithmen"
+
+#: admin/views/settings.php
+msgid "Fuzzy Match Threshold"
+msgstr "Fuzzy-Match-Schwellenwert"
+
+#: admin/views/settings.php
+msgid "Jaro-Winkler similarity score (0.0–1.0). Higher = stricter matching. Default: 0.85."
+msgstr "Jaro-Winkler-Ähnlichkeitswert (0,0–1,0). Höher = strengeres Matching. Standard: 0,85."
+
+#: admin/views/settings.php
+msgid "Privacy & GDPR"
+msgstr "Datenschutz & DSGVO"
+
+#: admin/views/settings.php
+msgid "Anonymize IP addresses before storage (GDPR-compliant)"
+msgstr "IP-Adressen vor der Speicherung anonymisieren (DSGVO-konform)"
+
+#: admin/views/settings.php
+msgid "Strongly recommended. When enabled, the last octet of IPv4 addresses is zeroed, then the IP is hashed with HMAC-SHA256."
+msgstr "Dringend empfohlen. Wenn aktiviert, wird das letzte Oktett der IPv4-Adressen auf Null gesetzt und die IP anschließend mit HMAC-SHA256 gehasht."
+
+#: admin/views/settings.php
+msgid "AI Premium"
+msgstr "KI Premium"
+
+#: admin/views/settings.php
+msgid "Phase 3"
+msgstr "Phase 3"
+
+#: admin/views/settings.php
+msgid "Enable AI Matching"
+msgstr "KI-Matching aktivieren"
+
+#: admin/views/settings.php
+msgid "Enable OpenAI Embeddings semantic matching"
+msgstr "Semantisches Matching mit OpenAI Embeddings aktivieren"
+
+#: admin/views/settings.php
+msgid "OpenAI API Key"
+msgstr "OpenAI API-Schlüssel"
+
+#: admin/views/settings.php
+msgid "Auto-Apply Confidence"
+msgstr "Auto-Anwenden-Konfidenz"
+
+#: admin/views/settings.php
+msgid "Matches above this score are auto-applied. Below = manual review."
+msgstr "Treffer über diesem Wert werden automatisch angewendet. Darunter = manuelle Überprüfung."
+
+#: admin/views/settings.php
+msgid "Daily API Budget"
+msgstr "Tägliches API-Budget"
+
+#: admin/views/settings.php
+msgid "Maximum number of API calls per day to control costs."
+msgstr "Maximale Anzahl an API-Aufrufen pro Tag zur Kostenkontrolle."
+
+#: admin/views/settings.php
+msgid "Save Update Settings"
+msgstr "Update-Einstellungen speichern"
+
+#: admin/views/settings.php
+msgid "Automatic Updates"
+msgstr "Automatische Updates"
+
+#: admin/views/settings.php
+msgid "Auto-Update"
+msgstr "Auto-Update"
+
+#: admin/views/settings.php
+msgid "Automatically check for new versions via GitHub Releases"
+msgstr "Automatisch nach neuen Versionen über GitHub Releases suchen"
+
+#: admin/views/settings.php
+msgid "When enabled, LinkForge 404 checks for updates every 12 hours. New versions appear as regular WordPress plugin updates. Disable this if you prefer to update manually."
+msgstr "Wenn aktiviert, prüft LinkForge 404 alle 12 Stunden auf Updates. Neue Versionen erscheinen als reguläre WordPress-Plugin-Updates. Deaktiviere dies, wenn du Updates lieber manuell durchführen möchtest."
+
+#: admin/views/settings.php
+msgid "Installed Version"
+msgstr "Installierte Version"
+
+#: admin/views/settings.php
+msgid "Update Source"
+msgstr "Update-Quelle"
+
+#: admin/views/settings.php
+msgid "Latest Available"
+msgstr "Neueste verfügbare Version"
+
+#: admin/views/settings.php
+msgid "Update available!"
+msgstr "Update verfügbar!"
+
+#: admin/views/settings.php
+msgid "Up to date"
+msgstr "Aktuell"
+
+#: admin/views/settings.php
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: admin/views/settings.php
+msgid "Email Support"
+msgstr "E-Mail-Support"
+
+#: admin/views/settings.php
+msgid "Send us your question or bug report and we will get back to you within 24 hours."
+msgstr "Sende uns deine Frage oder deinen Bug-Report und wir melden uns innerhalb von 24 Stunden zurück."
+
+#: admin/views/settings.php
+msgid "GitHub"
+msgstr "GitHub"
+
+#: admin/views/settings.php
+msgid "Report issues, request features, or contribute to the project."
+msgstr "Melde Probleme, schlage Features vor oder trage zum Projekt bei."
+
+#: admin/views/redirects.php
+msgid "LinkForge 404 — Redirects"
+msgstr "LinkForge 404 — Weiterleitungen"
+
+#: admin/views/redirects.php
+msgid "Add New Redirect"
+msgstr "Neue Weiterleitung hinzufügen"
+
+#: admin/views/redirects.php
+msgid "Source URL"
+msgstr "Quell-URL"
+
+#: admin/views/redirects.php
+msgid "Target URL"
+msgstr "Ziel-URL"
+
+#: admin/views/redirects.php
+msgid "Match Type"
+msgstr "Match-Typ"
+
+#: admin/views/redirects.php
+msgid "Exact"
+msgstr "Exakt"
+
+#: admin/views/redirects.php
+msgid "Regex"
+msgstr "Regex"
+
+#: admin/views/redirects.php
+msgid "Status Code"
+msgstr "Statuscode"
+
+#: admin/views/redirects.php
+msgid "301 Moved Permanently"
+msgstr "301 Permanent verschoben"
+
+#: admin/views/redirects.php
+msgid "302 Found (Temporary)"
+msgstr "302 Gefunden (Temporär)"
+
+#: admin/views/redirects.php
+msgid "307 Temporary Redirect"
+msgstr "307 Temporäre Weiterleitung"
+
+#: admin/views/redirects.php
+msgid "410 Gone"
+msgstr "410 Entfernt"
+
+#: admin/views/redirects.php
+msgid "Add Redirect"
+msgstr "Weiterleitung hinzufügen"
+
+#: admin/views/redirects.php
+msgid "Existing Redirects"
+msgstr "Vorhandene Weiterleitungen"
+
+#: admin/views/redirects.php
+msgid "Activate"
+msgstr "Aktivieren"
+
+#: admin/views/redirects.php
+msgid "Deactivate"
+msgstr "Deaktivieren"
+
+#: admin/views/redirects.php
+msgid "Export .htaccess"
+msgstr ".htaccess exportieren"
+
+#: admin/views/redirects.php
+msgid "Export Nginx"
+msgstr "Nginx exportieren"
+
+#: admin/views/redirects.php
+msgid "Type"
+msgstr "Typ"
+
+#: admin/views/redirects.php
+msgid "Status"
+msgstr "Status"
+
+#: admin/views/redirects.php
+msgid "Active"
+msgstr "Aktiv"
+
+#: admin/views/redirects.php
+msgid "Export Rules"
+msgstr "Regeln exportieren"
+
+#: admin/views/redirects.php
+msgid "Close"
+msgstr "Schließen"

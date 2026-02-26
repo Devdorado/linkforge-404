@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       LinkForge 404
  * Plugin URI:        https://devdorado.com/linkforge-404
- * Description:       [BETA] Enterprise-taugliches WordPress-Plugin für intelligentes 404-Management und proaktive Fehlerlink-Erkennung. Dieses Plugin wird aktuell intensiv getestet und laufend verbessert. Asynchrones Logging, mehrstufige Rerouting-Algorithmen (Exact, Regex, Fuzzy, KI) und DSGVO-konformes Privacy-by-Design.
+ * Description:       [BETA] Enterprise-grade WordPress plugin for intelligent 404 management and proactive broken link detection. Asynchronous logging, multi-stage rerouting algorithms (Exact, Regex, Fuzzy, AI) and GDPR-compliant Privacy-by-Design.
  * Version:           1.0.0-beta
  * Requires at least: 6.4
  * Requires PHP:      8.1

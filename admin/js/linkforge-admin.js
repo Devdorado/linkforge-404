@@ -35,8 +35,7 @@
 
             // Show warning if DB tables are missing.
             if (data.tables_ok === false) {
-                var msg = 'Database tables are being created. Please deactivate and reactivate the plugin, or visit a 404 page to trigger table creation, then reload this page.';
-                showNotice(msg, 'error');
+                showNotice(i18n.tablesWarning, 'error');
             }
         }).catch(function () {
             $('#stat-active-redirects, #stat-total-hits, #stat-unresolved, #stat-total-404-hits').text('?');
@@ -61,7 +60,7 @@
         $body.empty();
 
         if (items.length === 0) {
-            $body.html('<tr><td colspan="6" class="linkforge-loading">No 404 errors recorded yet.</td></tr>');
+            $body.html('<tr><td colspan="6" class="linkforge-loading">' + esc(i18n.noLogs) + '</td></tr>');
             return;
         }
 
@@ -73,7 +72,7 @@
                 '<td class="column-referrer">' + (item.referrer ? esc(truncate(item.referrer, 40)) : '—') + '</td>' +
                 '<td class="column-last-seen">' + esc(item.last_seen || '') + '</td>' +
                 '<td class="column-actions">' +
-                    '<a class="linkforge-row-action linkforge-quick-redirect" data-url="' + esc(item.url) + '" data-id="' + esc(item.id) + '">301 →</a>' +
+                    '<a class="linkforge-row-action linkforge-quick-redirect" data-url="' + esc(item.url) + '" data-id="' + esc(item.id) + '">' + esc(i18n.quickRedirect) + '</a>' +
                 '</td>' +
                 '</tr>';
             $body.append(row);
@@ -100,7 +99,7 @@
         $body.empty();
 
         if (items.length === 0) {
-            $body.html('<tr><td colspan="8" class="linkforge-loading">No redirects configured yet.</td></tr>');
+            $body.html('<tr><td colspan="8" class="linkforge-loading">' + esc(i18n.noRedirects) + '</td></tr>');
             return;
         }
 
@@ -117,7 +116,7 @@
                 '<td class="column-hits"><strong>' + esc(item.hit_count) + '</strong></td>' +
                 '<td class="column-active"><span class="linkforge-toggle ' + activeClass + '" data-id="' + esc(item.id) + '"></span></td>' +
                 '<td class="column-actions">' +
-                    '<a class="linkforge-row-action linkforge-delete" data-id="' + esc(item.id) + '">Delete</a>' +
+                    '<a class="linkforge-row-action linkforge-delete" data-id="' + esc(item.id) + '">' + esc(i18n.deleteAction) + '</a>' +
                 '</td>' +
                 '</tr>';
             $body.append(row);
@@ -193,7 +192,7 @@
         var logId = $(this).data('id');
         var url = $(this).data('url');
 
-        if (!confirm('Create 301 redirect for "' + url + '" → Homepage?')) return;
+        if (!confirm(i18n.confirmQuickRedirect.replace('%s', url))) return;
 
         apiFetch('logs/resolve', {
             method: 'POST',
@@ -256,7 +255,7 @@
 
     $(document).on('click', '#linkforge-export-apache, #linkforge-export-nginx', function () {
         var format = $(this).attr('id').includes('nginx') ? 'nginx' : 'apache';
-        var title = format === 'nginx' ? 'Nginx Rewrite Rules' : '.htaccess Rewrite Rules';
+        var title = format === 'nginx' ? i18n.exportNginx : i18n.exportHtaccess;
 
         $.post(linkforgeAdmin.ajaxUrl, {
             action: 'linkforge_export_rules',
@@ -275,8 +274,8 @@
         var $textarea = $('#linkforge-export-output');
         $textarea.select();
         document.execCommand('copy');
-        $(this).text('Copied!');
-        setTimeout(function () { $('#linkforge-export-copy').text('Copy to Clipboard'); }, 2000);
+        $(this).text(i18n.copied);
+        setTimeout(function () { $('#linkforge-export-copy').text(i18n.copyToClipboard); }, 2000);
     });
 
     $(document).on('click', '#linkforge-export-close', function () {
@@ -424,7 +423,7 @@
         // Remove any existing indicator for this input.
         $input.siblings('.linkforge-saved-indicator').remove();
 
-        var $indicator = $('<span class="linkforge-saved-indicator" style="color:#46b450;font-weight:600;margin-left:8px;transition:opacity .3s;">✓ Saved</span>');
+        var $indicator = $('<span class="linkforge-saved-indicator" style="color:#46b450;font-weight:600;margin-left:8px;transition:opacity .3s;">' + esc(i18n.savedIndicator) + '</span>');
         $input.closest('td').append($indicator);
 
         setTimeout(function () {

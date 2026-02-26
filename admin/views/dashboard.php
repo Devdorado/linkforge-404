@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     <!-- Beta Notice -->
     <div class="notice notice-info linkforge-beta-notice" style="margin: 0 0 20px 0; padding: 12px 16px; border-left-color: #dba617;">
         <p>
-            <strong>🚧 <?php esc_html_e( 'Beta-Version', 'linkforge-404' ); ?></strong> —
-            <?php esc_html_e( 'Dieses Plugin wird aktuell intensiv getestet und laufend verbessert. Feedback und Bug-Reports sind willkommen:', 'linkforge-404' ); ?>
+            <strong>🚧 <?php esc_html_e( 'Beta Version', 'linkforge-404' ); ?></strong> —
+            <?php esc_html_e( 'This plugin is currently being intensively tested and continuously improved. Feedback and bug reports are welcome:', 'linkforge-404' ); ?>
             <a href="mailto:support@devdorado.com">support@devdorado.com</a>
         </p>
     </div>
